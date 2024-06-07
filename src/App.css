@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  height: 5rem;
+  background-color: #161d2f;
+}
+
+.logo-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.logo-wrapper img {
+  height: 64px;
+  width: 64px;
+  margin-right: 20px;
+}
+
+.logo-wrapper h3 {
+  color: white;
+}
