@@ -37,4 +37,30 @@ header {
 }
 
 .searchbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #161d2f;
+  padding: 15px;
+  border-radius: 15px;
+}
+
+.searchbar .search-input {
+  background-color: hsl(0, 0%, 75%);
+}
+
+.searchbar .icons-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+}
+
+.searchbar .icons-wrapper .icon {
+  color: white;
+  height: 24px;
+  width: 24px;
+  margin-left: 10px;
+  cursor: pointer;
 }

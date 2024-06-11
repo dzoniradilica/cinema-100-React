@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RootLayout from './pages/Root';
 
 import './App.css';
-import HomePage from './pages/Home';
+import HomePage, { loader as moviesLoader } from './pages/Home';
 
 const router = createBrowserRouter([
   {
@@ -13,6 +13,7 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <HomePage />,
+        loader: moviesLoader,
       },
     ],
   },
