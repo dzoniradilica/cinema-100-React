@@ -1,7 +1,16 @@
 import { ConfigMovie } from '../configs/movie';
 
 export default function MovieCard({ movie }: { movie: ConfigMovie }) {
-  console.log(movie);
+  return (
+    <li key={movie.id} className="movie-card">
+      <img src={movie.image} alt={movie.title} />
+      <h3 className="movie-title">{movie.title}</h3>
 
-  return <li key={movie.id}>{movie.title}</li>;
+      <div className="movie-info">
+        <span className="year">{movie.year}</span>
+        <span className="rating">{movie.rating}</span>
+        <span className="genre">{movie.genre}</span>
+      </div>
+    </li>
+  );
 }

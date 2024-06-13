@@ -9,10 +9,12 @@ export default function Movies() {
 
   return (
     <section className="movies">
-      <ul>
-        {movies.map(movie => {
-          return <MovieCard movie={movie} />;
-        })}
+      <ul className="container">
+        <div className="row">
+          {movies.map(movie => {
+            return <MovieCard movie={movie} key={movie.id} />;
+          })}
+        </div>
       </ul>
     </section>
   );

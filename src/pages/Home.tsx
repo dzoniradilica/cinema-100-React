@@ -16,8 +16,6 @@ export async function loader() {
   const res = await fetch('https://65fb1a4614650eb210095a6f.mockapi.io/movies');
   const data: ConfigMovie[] = await res.json();
 
-  console.log(data);
-
   if (!res.ok) {
     console.log('nije dobro');
   } else {
