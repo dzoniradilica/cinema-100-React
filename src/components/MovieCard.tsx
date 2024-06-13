@@ -1,3 +1,5 @@
+import { StarFill } from 'react-bootstrap-icons';
+
 import { ConfigMovie } from '../configs/movie';
 
 export default function MovieCard({ movie }: { movie: ConfigMovie }) {
@@ -11,7 +13,9 @@ export default function MovieCard({ movie }: { movie: ConfigMovie }) {
 
         <div className="movie-info">
           <span className="year">{movie.year}</span>
-          <span className="rating">{movie.rating}</span>
+          <span className="rating">
+            <StarFill className="star" /> {movie.rating}
+          </span>
           <span className="genre">
             {movie.genre.length === 1
               ? movie.genre

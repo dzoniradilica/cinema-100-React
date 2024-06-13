@@ -94,6 +94,23 @@ header {
   text-overflow: ellipsis;
 }
 
+.movies .movie-card .movie-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.movies .movie-card .movie-info .rating {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.movies .movie-card .movie-info .rating .star {
+  fill: yellow;
+  margin-right: 5px;
+}
+
 .movies .movie-card .movie-info span {
   color: white;
   margin-right: 10px;
