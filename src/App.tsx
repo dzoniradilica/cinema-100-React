@@ -1,9 +1,9 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import RootLayout from './pages/Root';
+import HomePage, { loader as moviesLoader } from './pages/Home';
 
 import './App.css';
-import HomePage, { loader as moviesLoader } from './pages/Home';
 
 const router = createBrowserRouter([
   {
