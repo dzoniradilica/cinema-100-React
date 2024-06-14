@@ -3,11 +3,9 @@ import { StarFill } from 'react-bootstrap-icons';
 import { ConfigMovie } from '../configs/movie';
 
 export default function MovieCard({ movie }: { movie: ConfigMovie }) {
-  console.log(movie.genre);
-
   return (
-    <div className="col-md-3">
-      <li key={movie.id} className="movie-card">
+    <div className="col-md-3" key={movie.id}>
+      <li className="movie-card">
         <img src={movie.image} alt={movie.title} />
         <h3 className="movie-title">{movie.title}</h3>
 
@@ -19,8 +17,12 @@ export default function MovieCard({ movie }: { movie: ConfigMovie }) {
           <span className="genre">
             {movie.genre.length === 1
               ? movie.genre
-              : movie.genre.map(mg => {
-                  return <span className="genre">{mg}</span>;
+              : movie.genre.map((mg, index) => {
+                  return (
+                    <span key={index} className="genre">
+                      {mg}
+                    </span>
+                  );
                 })}
           </span>
         </div>

@@ -1,12 +1,8 @@
-import { useLoaderData } from 'react-router';
-
 import MovieCard from './MovieCard';
 
 import { ConfigMovie } from '../configs/movie';
 
-export default function Movies() {
-  const movies = useLoaderData() as ConfigMovie[];
-
+export default function Movies({ movies }: { movies: ConfigMovie[] }) {
   return (
     <section className="movies">
       <ul className="container">
