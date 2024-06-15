@@ -7,13 +7,15 @@ import { ConfigMovie } from '../configs/movie';
 
 export default function HomePage() {
   const movies = useLoaderData() as ConfigMovie[];
-  const genres = new Set([...movies.map(movie => movie.genre)]);
+  const genres = [...new Set(movies.flatMap(movie => movie.genre))];
 
-  console.log(genres);
+  // function handleSearch() {
+
+  // }
 
   return (
     <div className="home-wrapper">
-      <Searchbar genre={['']} />
+      <Searchbar genres={genres} />
       <Movies movies={movies} />
     </div>
   );
