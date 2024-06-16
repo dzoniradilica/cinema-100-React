@@ -8,7 +8,7 @@ import { ConfigMovie } from '../configs/movie';
 
 export default function HomePage() {
   const [movieName, setMovieName] = useState('');
-  const [genre, setGenre] = useState('all');
+  const [genre, setGenre] = useState('');
 
   const movies = useLoaderData() as ConfigMovie[];
   const genres = [...new Set(movies.flatMap(movie => movie.genre))];
@@ -21,8 +21,6 @@ export default function HomePage() {
     setGenre(e.target.value);
   }
 
-  console.log(genre);
-
   return (
     <div className="home-wrapper">
       <Searchbar
@@ -30,7 +28,7 @@ export default function HomePage() {
         onSearch={handleSearch}
         onSelect={handleGenre}
       />
-      <Movies movies={movies} movieName={movieName} />
+      <Movies movies={movies} movieName={movieName} selectedGenre={genre} />
     </div>
   );
 }
