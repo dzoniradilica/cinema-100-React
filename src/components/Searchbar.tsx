@@ -1,7 +1,8 @@
 import { ChangeEvent } from 'react';
+import { useLocation } from 'react-router';
 
-import { AiOutlineHome } from 'react-icons/ai';
-import { CiBookmark } from 'react-icons/ci';
+import { AiOutlineHome, AiFillHome } from 'react-icons/ai';
+import { RiBookMarkedLine } from 'react-icons/ri';
 
 export default function Searchbar({
   genres,
@@ -12,6 +13,8 @@ export default function Searchbar({
   onSearch: (e: ChangeEvent<HTMLInputElement>) => void;
   onSelect: (e: ChangeEvent<HTMLSelectElement>) => void;
 }) {
+  const { pathname } = useLocation();
+
   return (
     <div className="searchbar">
       <input
@@ -31,8 +34,15 @@ export default function Searchbar({
           ))}
         </select>
 
-        <CiBookmark className="icon" />
-        <AiOutlineHome className="icon" />
+        <RiBookMarkedLine
+          className="icon"
+          fill={pathname === 'bookmark' ? 'red' : 'white'}
+        />
+        {pathname === '/' ? (
+          <AiFillHome className="icon" fill="red" />
+        ) : (
+          <AiOutlineHome className="icon" />
+        )}
       </div>
     </div>
   );
