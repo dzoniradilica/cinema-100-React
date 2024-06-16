@@ -1,25 +1,28 @@
-import { useRef } from 'react';
+import { ChangeEvent } from 'react';
 
 import { AiOutlineHome } from 'react-icons/ai';
 import { CiBookmark } from 'react-icons/ci';
 
-export default function Searchbar({ genres }: { genres: string[] }) {
-  const movieName = useRef<HTMLInputElement>(null);
-
-  console.log(movieName.current?.value);
-
+export default function Searchbar({
+  genres,
+  onSearch,
+  onSelect,
+}: {
+  genres: string[];
+  onSearch: (e: ChangeEvent<HTMLInputElement>) => void;
+  onSelect: (e: ChangeEvent<HTMLSelectElement>) => void;
+}) {
   return (
     <div className="searchbar">
       <input
         className="search-input"
         type="text"
         placeholder="Search"
-        ref={movieName}
+        onChange={e => onSearch(e)}
       />
-      <button>Search</button>
 
       <div className="icons-wrapper">
-        <select>
+        <select onChange={e => onSelect(e)}>
           <option value="all">All</option>
           {genres.map(genre => (
             <option key={genre} value={genre}>

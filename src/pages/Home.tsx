@@ -1,3 +1,4 @@
+import { ChangeEvent, useState } from 'react';
 import { useLoaderData } from 'react-router';
 
 import Movies from '../components/Movies';
@@ -6,17 +7,30 @@ import Searchbar from '../components/Searchbar';
 import { ConfigMovie } from '../configs/movie';
 
 export default function HomePage() {
+  const [movieName, setMovieName] = useState('');
+  const [genre, setGenre] = useState('all');
+
   const movies = useLoaderData() as ConfigMovie[];
   const genres = [...new Set(movies.flatMap(movie => movie.genre))];
 
-  // function handleSearch() {
+  function handleSearch(e: ChangeEvent<HTMLInputElement>) {
+    setMovieName(e.target.value);
+  }
 
-  // }
+  function handleGenre(e: ChangeEvent<HTMLSelectElement>) {
+    setGenre(e.target.value);
+  }
+
+  console.log(genre);
 
   return (
     <div className="home-wrapper">
-      <Searchbar genres={genres} />
-      <Movies movies={movies} />
+      <Searchbar
+        genres={genres}
+        onSearch={handleSearch}
+        onSelect={handleGenre}
+      />
+      <Movies movies={movies} movieName={movieName} />
     </div>
   );
 }
