@@ -121,3 +121,23 @@ header {
   color: white;
   margin-right: 10px;
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-right: auto;
+  margin-left: auto;
+  padding-bottom: 50px;
+}
+
+.pagination button {
+  margin-right: 5px;
+  border-radius: 5px;
+  padding: 3px 8px;
+  opacity: 75%;
+  border: none;
+}
+
+.active {
+  background-color: red;
+}

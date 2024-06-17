@@ -1,9 +1,11 @@
 export default function Pagination({
   length,
+  currentPage,
   moviesPerPage,
   onPagination,
 }: {
   length: number;
+  currentPage: number;
   moviesPerPage: number;
   onPagination: (pageNumber: number) => void;
 }) {
@@ -13,12 +15,14 @@ export default function Pagination({
     paginationNumbers.push(i);
   }
 
-  console.log(paginationNumbers);
-
   return (
     <div className="pagination">
       {paginationNumbers.map(pageNumber => (
-        <button key={pageNumber} onClick={() => onPagination(pageNumber)}>
+        <button
+          key={pageNumber}
+          onClick={() => onPagination(pageNumber)}
+          className={currentPage === pageNumber ? ' active' : ''}
+        >
           {pageNumber}
         </button>
       ))}

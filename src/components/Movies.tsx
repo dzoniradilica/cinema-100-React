@@ -1,4 +1,7 @@
+import { useState } from 'react';
+
 import MovieCard from './MovieCard';
+import Pagination from './Pagination';
 
 import { ConfigMovie } from '../configs/movie';
 
@@ -11,6 +14,14 @@ export default function Movies({
   movieName: string;
   selectedGenre: string;
 }) {
+  const [pagination, setPagination] = useState({
+    currentPage: 1,
+    moviesPerPage: 12,
+  });
+
+  const start = (pagination.currentPage - 1) * pagination.moviesPerPage;
+  const end = pagination.currentPage * pagination.moviesPerPage;
+
   const searchedMovies = movies.filter(movie => {
     if (movieName) {
       return movie.title.toLowerCase().includes(movieName.toLowerCase());
@@ -25,11 +36,20 @@ export default function Movies({
     return movie;
   });
 
+  function handlePagination(pageNumber: number) {
+    setPagination(prevPagination => {
+      return {
+        ...prevPagination,
+        currentPage: pageNumber,
+      };
+    });
+  }
+
   return (
     <section className="movies">
       <ul className="container">
         <div className="row">
-          {searchedMovies.map(movie => {
+          {searchedMovies.slice(start, end).map(movie => {
             return <MovieCard movie={movie} key={movie.id} />;
           })}
 
@@ -38,6 +58,13 @@ export default function Movies({
           )}
         </div>
       </ul>
+
+      <Pagination
+        length={searchedMovies.length}
+        currentPage={pagination.currentPage}
+        moviesPerPage={pagination.moviesPerPage}
+        onPagination={handlePagination}
+      />
     </section>
   );
 }
