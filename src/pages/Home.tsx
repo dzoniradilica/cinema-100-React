@@ -3,15 +3,23 @@ import { useLoaderData } from 'react-router';
 
 import Movies from '../components/Movies';
 import Searchbar from '../components/Searchbar';
+import Pagination from '../components/Pagination';
 
 import { ConfigMovie } from '../configs/movie';
 
 export default function HomePage() {
-  const [movieName, setMovieName] = useState('');
-  const [genre, setGenre] = useState('');
-
   const movies = useLoaderData() as ConfigMovie[];
   const genres = [...new Set(movies.flatMap(movie => movie.genre))];
+
+  const [movieName, setMovieName] = useState('');
+  const [genre, setGenre] = useState('');
+  const [pagination, setPagination] = useState({
+    currentPage: 1,
+    moviesPerPage: 12,
+  });
+
+  const start = (pagination.currentPage - 1) * pagination.moviesPerPage;
+  const end = pagination.currentPage * pagination.moviesPerPage;
 
   function handleSearch(e: ChangeEvent<HTMLInputElement>) {
     setMovieName(e.target.value);
@@ -21,6 +29,15 @@ export default function HomePage() {
     setGenre(e.target.value);
   }
 
+  function handlePagination(pageNumber: number) {
+    setPagination(prevPagination => {
+      return {
+        ...prevPagination,
+        currentPage: pageNumber,
+      };
+    });
+  }
+
   return (
     <div className="home-wrapper">
       <Searchbar
@@ -28,7 +45,16 @@ export default function HomePage() {
         onSearch={handleSearch}
         onSelect={handleGenre}
       />
-      <Movies movies={movies} movieName={movieName} selectedGenre={genre} />
+      <Movies
+        movies={movies.slice(start, end)}
+        movieName={movieName}
+        selectedGenre={genre}
+      />
+      <Pagination
+        length={movies.length}
+        moviesPerPage={pagination.moviesPerPage}
+        onPagination={handlePagination}
+      />
     </div>
   );
 }

@@ -15,12 +15,10 @@ const router = createBrowserRouter([
         path: '/',
         element: <HomePage />,
         loader: moviesLoader,
-        children: [
-          {
-            path: '/:movieId',
-            element: <MovieDetail />,
-          },
-        ],
+      },
+      {
+        path: '/:movieId',
+        element: <MovieDetail />,
       },
     ],
   },
