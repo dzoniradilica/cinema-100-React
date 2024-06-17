@@ -19,6 +19,9 @@ const router = createBrowserRouter([
       {
         path: '/:movieId',
         element: <MovieDetail />,
+        loader: ({ params }: { params: string }) => {
+          console.log(params);
+        },
       },
     ],
   },

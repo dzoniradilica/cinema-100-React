@@ -81,6 +81,10 @@ header {
   margin-bottom: 70px;
 }
 
+.movies .movie-card a {
+  text-decoration: none;
+}
+
 .movies .movie-card img {
   width: 100%;
   height: 100%;

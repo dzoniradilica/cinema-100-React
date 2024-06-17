@@ -23,11 +23,21 @@ export default function Movies({
   const end = pagination.currentPage * pagination.moviesPerPage;
 
   const searchedMovies = movies.filter(movie => {
+    if (movieName && selectedGenre && selectedGenre !== 'all') {
+      pagination.currentPage = 1;
+      return (
+        movie.title.toLowerCase().includes(movieName.toLowerCase()) &&
+        movie.genre.includes(selectedGenre)
+      );
+    }
+
     if (movieName) {
+      pagination.currentPage = 1;
       return movie.title.toLowerCase().includes(movieName.toLowerCase());
     }
 
     if (selectedGenre && selectedGenre !== 'all') {
+      pagination.currentPage = 1;
       return movie.genre.includes(selectedGenre);
     }
 
