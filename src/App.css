@@ -148,7 +148,6 @@ header {
 
 .single-movie {
   margin-top: 50px;
-  text-align: center;
 }
 
 .single-movie .single-movie-title {
@@ -195,4 +194,31 @@ header {
 
 .single-movie .single-movie-rank p .star {
   fill: yellow;
+}
+
+.single-movie .movie-image {
+  height: 25rem;
+}
+
+.single-movie .movie-image img {
+  height: 100%;
+  width: 80%;
+}
+
+.single-movie .movie-video iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.single-movie .genres-desc {
+  max-width: 600px;
+}
+
+.single-movie .genres-desc p span {
+  color: white;
+}
+
+.single-movie .genres-desc .desc {
+  color: white;
+  opacity: 75%;
 }
