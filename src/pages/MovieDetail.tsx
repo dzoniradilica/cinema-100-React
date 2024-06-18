@@ -1,6 +1,6 @@
 import { useLoaderData, json } from 'react-router';
 
-import Movie from '../components/Movie';
+import Movie from '../components/singleMovie/Movie';
 
 import { Params } from '../configs/params';
 import { ConfigMovie } from '../configs/movie';

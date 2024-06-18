@@ -147,6 +147,52 @@ header {
 }
 
 .single-movie {
-  margin-top: 100px;
+  margin-top: 50px;
   text-align: center;
+}
+
+.single-movie .single-movie-title {
+  text-align: left;
+}
+
+.single-movie .single-movie-title h3 {
+  color: white;
+  opacity: 85%;
+}
+
+.single-movie .single-movie-title p {
+  color: white;
+  opacity: 75%;
+}
+
+.single-movie .single-movie-rank {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.single-movie .single-movie-rank h4 {
+  color: white;
+  opacity: 75%;
+  margin-right: 30px;
+}
+
+.single-movie .single-movie-rank p {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  color: white;
+  margin-right: 30px;
+}
+
+.single-movie .single-movie-rank p span {
+  margin-right: 10px;
+  color: white;
+  opacity: 75%;
+}
+
+.single-movie .single-movie-rank p .star {
+  fill: yellow;
 }
