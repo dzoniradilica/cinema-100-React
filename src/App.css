@@ -145,3 +145,8 @@ header {
 .active {
   background-color: red;
 }
+
+.single-movie {
+  margin-top: 100px;
+  text-align: center;
+}

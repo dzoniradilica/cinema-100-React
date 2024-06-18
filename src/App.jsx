@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import RootLayout from './pages/Root';
 import HomePage, { loader as moviesLoader } from './pages/Home';
-import MovieDetail from './pages/MovieDetail';
+import MovieDetail, { loader as movieLoader } from './pages/MovieDetail';
 
 import './App.css';
 
@@ -19,9 +19,7 @@ const router = createBrowserRouter([
       {
         path: '/:movieId',
         element: <MovieDetail />,
-        loader: ({ params }: { params: string }) => {
-          console.log(params);
-        },
+        loader: ({ params }) => movieLoader({ params }),
       },
     ],
   },

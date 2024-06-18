@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from 'react';
-import { useLoaderData } from 'react-router';
+import { useLoaderData, json } from 'react-router';
 
 import Movies from '../components/Movies';
 import Searchbar from '../components/Searchbar';
@@ -38,8 +38,10 @@ export async function loader() {
   const res = await fetch('https://65fb1a4614650eb210095a6f.mockapi.io/movies');
 
   if (!res.ok) {
-    console.log('nije dobro');
-  } else {
-    return res;
+    if (!res.ok) {
+      throw json({ message: 'Movies data is not fetched!' }, { status: 500 });
+    }
   }
+
+  return res;
 }

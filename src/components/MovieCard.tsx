@@ -8,7 +8,7 @@ export default function MovieCard({ movie }: { movie: ConfigMovie }) {
   return (
     <div className="col-md-3" key={movie.id}>
       <li className="movie-card">
-        <Link to={movie.imdbid}>
+        <Link to={movie.id}>
           <img src={movie.image} alt={movie.title} />
         </Link>
 
