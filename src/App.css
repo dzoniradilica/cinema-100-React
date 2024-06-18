@@ -148,6 +148,7 @@ header {
 
 .single-movie {
   margin-top: 50px;
+  padding-bottom: 50px;
 }
 
 .single-movie .single-movie-title {
@@ -212,6 +213,7 @@ header {
 
 .single-movie .genres-desc {
   max-width: 600px;
+  border-bottom: 1px solid white;
 }
 
 .single-movie .genres-desc p span {
@@ -219,6 +221,36 @@ header {
 }
 
 .single-movie .genres-desc .desc {
+  color: white;
+  opacity: 75%;
+}
+
+.single-movie .director {
+  margin-top: 10px;
+  border-bottom: 1px solid white;
+  max-width: 600px;
+}
+
+.single-movie .director h4 {
+  color: white;
+}
+
+.single-movie .director p {
+  color: white;
+  opacity: 75%;
+}
+
+.single-movie .writers {
+  margin-top: 10px;
+  border-bottom: 1px solid white;
+  max-width: 600px;
+}
+
+.single-movie .writers h4 {
+  color: white;
+}
+
+.single-movie .writers p {
   color: white;
   opacity: 75%;
 }

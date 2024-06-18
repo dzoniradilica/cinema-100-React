@@ -12,8 +12,15 @@ export default function MovieFooter({ movie }: { movie: ConfigMovie }) {
         <p className="desc">{movie.description}</p>
       </div>
 
-      <div className="row"></div>
-      <div className="row"></div>
+      <div className="row director">
+        <h4>Director</h4>
+        <p>{movie.director}</p>
+      </div>
+
+      <div className="row writers">
+        <h4>Writers</h4>
+        <p>{movie.writers}</p>
+      </div>
     </>
   );
 }
