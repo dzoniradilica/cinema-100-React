@@ -1,25 +1,21 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent } from 'react';
 
 import { AiOutlineHome, AiFillHome } from 'react-icons/ai';
 import { RiBookMarkedLine } from 'react-icons/ri';
 
 export default function Searchbar({
   genres,
+  location,
   onSearch,
   onSelect,
+  onLocation,
 }: {
   genres: string[];
+  location: boolean;
   onSearch: (e: ChangeEvent<HTMLInputElement>) => void;
   onSelect: (e: ChangeEvent<HTMLSelectElement>) => void;
+  onLocation: () => void;
 }) {
-  const [location, setLocation] = useState(true);
-
-  function handleLocation() {
-    setLocation(prevLocation => !prevLocation);
-  }
-
-  console.log(location);
-
   return (
     <div className="searchbar">
       <input
@@ -43,7 +39,7 @@ export default function Searchbar({
           className="icon"
           fill={!location ? 'red' : 'white'}
           pointerEvents={!location ? 'none' : 'inherited'}
-          onClick={handleLocation}
+          onClick={onLocation}
         />
         {location ? (
           <AiFillHome
@@ -52,7 +48,7 @@ export default function Searchbar({
             fill="red"
           />
         ) : (
-          <AiOutlineHome className="icon" onClick={handleLocation} />
+          <AiOutlineHome className="icon" onClick={onLocation} />
         )}
       </div>
     </div>

@@ -103,7 +103,7 @@ header {
   position: absolute;
   right: 5%;
   top: 5%;
-  fill: white;
+  fill: #0c4497;
   font-size: 18px;
 }
 
@@ -113,7 +113,7 @@ header {
 }
 
 .movies .movie-card .image-wrapper:hover {
-  opacity: 70%;
+  filter: brightness(50%);
 }
 
 .movies .movie-card .image-wrapper:hover .search-icon {
