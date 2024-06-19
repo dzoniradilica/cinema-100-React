@@ -85,9 +85,44 @@ header {
   text-decoration: none;
 }
 
-.movies .movie-card img {
+.movies .movie-card .image-wrapper {
+  position: relative;
+  transition: all 3ms ease;
+}
+
+.movies .movie-card .image-wrapper .search-icon {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  font-size: 24px;
+}
+
+.movies .movie-card .image-wrapper .bookmark-icon {
+  display: none;
+  position: absolute;
+  right: 5%;
+  top: 5%;
+  fill: white;
+  font-size: 18px;
+}
+
+.movies .movie-card .image-wrapper img {
   width: 100%;
   height: 100%;
+}
+
+.movies .movie-card .image-wrapper:hover {
+  opacity: 70%;
+}
+
+.movies .movie-card .image-wrapper:hover .search-icon {
+  display: block;
+}
+
+.movies .movie-card .image-wrapper:hover .bookmark-icon {
+  display: block;
+  cursor: pointer;
 }
 
 .movies .movie-card .movie-title {
@@ -214,10 +249,12 @@ header {
 .single-movie .genres-desc {
   max-width: 600px;
   border-bottom: 1px solid white;
+  margin-top: 20px;
 }
 
 .single-movie .genres-desc p span {
   color: white;
+  margin-right: 10px;
 }
 
 .single-movie .genres-desc .desc {
