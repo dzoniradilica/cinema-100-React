@@ -1,5 +1,4 @@
-import { ChangeEvent } from 'react';
-import { useLocation } from 'react-router';
+import { ChangeEvent, useState } from 'react';
 
 import { AiOutlineHome, AiFillHome } from 'react-icons/ai';
 import { RiBookMarkedLine } from 'react-icons/ri';
@@ -13,7 +12,13 @@ export default function Searchbar({
   onSearch: (e: ChangeEvent<HTMLInputElement>) => void;
   onSelect: (e: ChangeEvent<HTMLSelectElement>) => void;
 }) {
-  const { pathname } = useLocation();
+  const [location, setLocation] = useState(true);
+
+  function handleLocation() {
+    setLocation(prevLocation => !prevLocation);
+  }
+
+  console.log(location);
 
   return (
     <div className="searchbar">
@@ -36,12 +41,18 @@ export default function Searchbar({
 
         <RiBookMarkedLine
           className="icon"
-          fill={pathname === 'bookmark' ? 'red' : 'white'}
+          fill={!location ? 'red' : 'white'}
+          pointerEvents={!location ? 'none' : 'inherited'}
+          onClick={handleLocation}
         />
-        {pathname === '/' ? (
-          <AiFillHome className="icon" fill="red" />
+        {location ? (
+          <AiFillHome
+            pointerEvents={location ? 'none' : 'inherited'}
+            className="icon"
+            fill="red"
+          />
         ) : (
-          <AiOutlineHome className="icon" />
+          <AiOutlineHome className="icon" onClick={handleLocation} />
         )}
       </div>
     </div>

@@ -3,7 +3,6 @@ import { useLoaderData, json } from 'react-router';
 
 import Movies from '../components/Movies';
 import Searchbar from '../components/Searchbar';
-// import Pagination from '../components/Pagination';
 
 import { ConfigMovie } from '../configs/movie';
 
