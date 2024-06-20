@@ -3,7 +3,6 @@ import { useLoaderData, json } from 'react-router';
 
 import Movies from '../components/Movies';
 import Searchbar from '../components/Searchbar';
-import BookmarkedMovie from '../components/BookmarkedMovie';
 
 import { ConfigMovie } from '../configs/movie';
 
@@ -14,6 +13,7 @@ export default function HomePage() {
   const [movieName, setMovieName] = useState('');
   const [genre, setGenre] = useState('');
   const [location, setLocation] = useState(true);
+  const [bookmarked, setBookmarked] = useState<any[]>([]);
 
   function handleLocation() {
     setLocation(prevLocation => !prevLocation);
@@ -27,6 +27,14 @@ export default function HomePage() {
     setGenre(e.target.value);
   }
 
+  function handleBookmark(id: string) {
+    setBookmarked(prevBookmark => {
+      const newBookmark = movies.find(movie => movie.id === id);
+
+      return [...prevBookmark, newBookmark];
+    });
+  }
+
   return (
     <div className="home-wrapper">
       <Searchbar
@@ -36,10 +44,12 @@ export default function HomePage() {
         onSelect={handleGenre}
         onLocation={handleLocation}
       />
-      {location && (
-        <Movies movies={movies} movieName={movieName} selectedGenre={genre} />
-      )}
-      {!location && <BookmarkedMovie />}
+      <Movies
+        movies={movies}
+        location={location}
+        movieName={movieName}
+        selectedGenre={genre}
+      />
     </div>
   );
 }

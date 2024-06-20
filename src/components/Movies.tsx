@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import MovieCard from './MovieCard';
 import Pagination from './Pagination';
+// import BookmarkedMovie from './BookmarkedMovie';
 
 import { ConfigMovie } from '../configs/movie';
 
@@ -9,10 +10,12 @@ export default function Movies({
   movies,
   movieName,
   selectedGenre,
+  location,
 }: {
   movies: ConfigMovie[];
   movieName: string;
   selectedGenre: string;
+  location: boolean;
 }) {
   const [pagination, setPagination] = useState({
     currentPage: 1,
@@ -59,12 +62,22 @@ export default function Movies({
     <section className="movies">
       <ul className="container">
         <div className="row">
-          {searchedMovies.slice(start, end).map(movie => {
-            return <MovieCard movie={movie} key={movie.id} />;
-          })}
+          {location &&
+            searchedMovies.slice(start, end).map(movie => {
+              return <MovieCard movie={movie} key={movie.id} />;
+            })}
 
           {searchedMovies.length === 0 && (
             <p className="noMovie">No movies found!</p>
+          )}
+
+          {!location &&
+            searchedMovies.slice(start, end).map(movie => {
+              return <MovieCard movie={movie} key={movie.id} />;
+            })}
+
+          {searchedMovies.length === 0 && (
+            <p className="noMovie">No bookmarked movies!</p>
           )}
         </div>
       </ul>
