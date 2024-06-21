@@ -13,7 +13,7 @@ export default function HomePage() {
   const [movieName, setMovieName] = useState('');
   const [genre, setGenre] = useState('');
   const [location, setLocation] = useState(true);
-  const [bookmarked, setBookmarked] = useState<any[]>([]);
+  const [bookmarked, setBookmarked] = useState<ConfigMovie[] | undefined>([]);
 
   function handleLocation() {
     setLocation(prevLocation => !prevLocation);
@@ -29,11 +29,17 @@ export default function HomePage() {
 
   function handleBookmark(id: string) {
     setBookmarked(prevBookmark => {
-      const newBookmark = movies.find(movie => movie.id === id);
+      const newBookmark = movies.find(movie => movie.id === id)!;
 
-      return [...prevBookmark, newBookmark];
+      if (!prevBookmark!.includes(newBookmark)) {
+        return [...prevBookmark!, newBookmark];
+      } else {
+        return prevBookmark?.filter(bookmark => bookmark.id !== id);
+      }
     });
   }
+
+  console.log(bookmarked);
 
   return (
     <div className="home-wrapper">
@@ -49,6 +55,7 @@ export default function HomePage() {
         location={location}
         movieName={movieName}
         selectedGenre={genre}
+        onBookmark={handleBookmark}
       />
     </div>
   );

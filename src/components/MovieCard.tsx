@@ -4,7 +4,13 @@ import { StarFill, Search, Bookmark } from 'react-bootstrap-icons';
 
 import { ConfigMovie } from '../configs/movie';
 
-export default function MovieCard({ movie }: { movie: ConfigMovie }) {
+export default function MovieCard({
+  movie,
+  onBookmark,
+}: {
+  movie: ConfigMovie;
+  onBookmark: (id: string) => void;
+}) {
   return (
     <div className="col-md-3" key={movie.id}>
       <li className="movie-card">
@@ -13,7 +19,10 @@ export default function MovieCard({ movie }: { movie: ConfigMovie }) {
           <Link to={movie.id}>
             <Search className="search-icon" />
           </Link>
-          <Bookmark className="bookmark-icon" />
+          <Bookmark
+            className="bookmark-icon"
+            onClick={() => onBookmark(movie.id)}
+          />
         </div>
 
         <h3 className="movie-title">{movie.title}</h3>

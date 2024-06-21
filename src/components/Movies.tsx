@@ -9,13 +9,15 @@ import { ConfigMovie } from '../configs/movie';
 export default function Movies({
   movies,
   movieName,
-  selectedGenre,
   location,
+  selectedGenre,
+  onBookmark,
 }: {
   movies: ConfigMovie[];
   movieName: string;
-  selectedGenre: string;
   location: boolean;
+  selectedGenre: string;
+  onBookmark: (id: string) => void;
 }) {
   const [pagination, setPagination] = useState({
     currentPage: 1,
@@ -64,7 +66,13 @@ export default function Movies({
         <div className="row">
           {location &&
             searchedMovies.slice(start, end).map(movie => {
-              return <MovieCard movie={movie} key={movie.id} />;
+              return (
+                <MovieCard
+                  movie={movie}
+                  key={movie.id}
+                  onBookmark={onBookmark}
+                />
+              );
             })}
 
           {searchedMovies.length === 0 && (
@@ -73,7 +81,13 @@ export default function Movies({
 
           {!location &&
             searchedMovies.slice(start, end).map(movie => {
-              return <MovieCard movie={movie} key={movie.id} />;
+              return (
+                <MovieCard
+                  movie={movie}
+                  key={movie.id}
+                  onBookmark={onBookmark}
+                />
+              );
             })}
 
           {searchedMovies.length === 0 && (
