@@ -1,14 +1,22 @@
 import { Link } from 'react-router-dom';
 
-import { StarFill, Search, Bookmark } from 'react-bootstrap-icons';
+import {
+  StarFill,
+  Search,
+  Bookmark,
+  BookmarkCheck,
+  // BookmarkCheck,
+} from 'react-bootstrap-icons';
 
 import { ConfigMovie } from '../configs/movie';
 
 export default function MovieCard({
   movie,
+  bookmarked,
   onBookmark,
 }: {
   movie: ConfigMovie;
+  bookmarked: ConfigMovie[];
   onBookmark: (id: string) => void;
 }) {
   return (
@@ -19,10 +27,22 @@ export default function MovieCard({
           <Link to={movie.id}>
             <Search className="search-icon" />
           </Link>
+
           <Bookmark
             className="bookmark-icon"
             onClick={() => onBookmark(movie.id)}
           />
+
+          {bookmarked.map(bm => {
+            if (bm.id === movie.id) {
+              return (
+                <BookmarkCheck
+                  className="bookmark-icon"
+                  onClick={() => onBookmark(movie.id)}
+                />
+              );
+            }
+          })}
         </div>
 
         <h3 className="movie-title">{movie.title}</h3>

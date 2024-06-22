@@ -39,8 +39,6 @@ export default function HomePage() {
     });
   }
 
-  console.log(bookmarked);
-
   return (
     <div className="home-wrapper">
       <Searchbar
@@ -55,6 +53,7 @@ export default function HomePage() {
         location={location}
         movieName={movieName}
         selectedGenre={genre}
+        bookmarked={bookmarked!}
         onBookmark={handleBookmark}
       />
     </div>

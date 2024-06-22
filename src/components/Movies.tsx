@@ -1,25 +1,30 @@
 import { useState } from 'react';
 
+import searchMovie from '../utils/searchMovie';
+
 import MovieCard from './MovieCard';
 import Pagination from './Pagination';
 // import BookmarkedMovie from './BookmarkedMovie';
 
 import { ConfigMovie } from '../configs/movie';
+import { PaginationConfig } from '../configs/pagination';
 
 export default function Movies({
   movies,
   movieName,
   location,
   selectedGenre,
+  bookmarked,
   onBookmark,
 }: {
   movies: ConfigMovie[];
   movieName: string;
   location: boolean;
   selectedGenre: string;
+  bookmarked: ConfigMovie[];
   onBookmark: (id: string) => void;
 }) {
-  const [pagination, setPagination] = useState({
+  const [pagination, setPagination] = useState<PaginationConfig>({
     currentPage: 1,
     moviesPerPage: 12,
   });
@@ -27,29 +32,18 @@ export default function Movies({
   const start = (pagination.currentPage - 1) * pagination.moviesPerPage;
   const end = pagination.currentPage * pagination.moviesPerPage;
 
-  const searchedMovies = movies.filter(movie => {
-    if (movieName && selectedGenre && selectedGenre !== 'all') {
-      pagination.currentPage = 1;
-      return (
-        movie.title.toLowerCase().includes(movieName.toLowerCase()) &&
-        movie.genre.includes(selectedGenre)
-      );
-    }
-
-    if (movieName) {
-      pagination.currentPage = 1;
-      return movie.title.toLowerCase().includes(movieName.toLowerCase());
-    }
-
-    if (selectedGenre && selectedGenre !== 'all') {
-      pagination.currentPage = 1;
-      return movie.genre.includes(selectedGenre);
-    }
-
-    if (selectedGenre === 'all') return movie;
-
-    return movie;
-  });
+  const searchedMovies = searchMovie(
+    movies,
+    movieName,
+    selectedGenre,
+    pagination
+  );
+  const bookmarkedMovies = searchMovie(
+    bookmarked,
+    movieName,
+    selectedGenre,
+    pagination
+  );
 
   function handlePagination(pageNumber: number) {
     setPagination(prevPagination => {
@@ -71,26 +65,28 @@ export default function Movies({
                   movie={movie}
                   key={movie.id}
                   onBookmark={onBookmark}
+                  bookmarked={bookmarked}
                 />
               );
             })}
 
-          {searchedMovies.length === 0 && (
+          {searchedMovies.length === 0 && location && (
             <p className="noMovie">No movies found!</p>
           )}
 
           {!location &&
-            searchedMovies.slice(start, end).map(movie => {
+            bookmarkedMovies.slice(start, end).map(movie => {
               return (
                 <MovieCard
                   movie={movie}
                   key={movie.id}
                   onBookmark={onBookmark}
+                  bookmarked={bookmarked}
                 />
               );
             })}
 
-          {searchedMovies.length === 0 && (
+          {bookmarkedMovies.length === 0 && !location && (
             <p className="noMovie">No bookmarked movies!</p>
           )}
         </div>
