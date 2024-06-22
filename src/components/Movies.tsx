@@ -63,7 +63,7 @@ export default function Movies({
               return (
                 <MovieCard
                   movie={movie}
-                  key={movie.id}
+                  keyValue={movie.id}
                   onBookmark={onBookmark}
                   bookmarked={bookmarked}
                 />
@@ -80,13 +80,14 @@ export default function Movies({
                 <MovieCard
                   movie={movie}
                   key={movie.id}
+                  keyValue={movie.imdbid}
                   onBookmark={onBookmark}
                   bookmarked={bookmarked}
                 />
               );
             })}
 
-          {bookmarkedMovies.length === 0 && !location && (
+          {bookmarkedMovies.length === 0 && (
             <p className="noMovie">No bookmarked movies!</p>
           )}
         </div>

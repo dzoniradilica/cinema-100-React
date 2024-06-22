@@ -13,16 +13,20 @@ import { ConfigMovie } from '../configs/movie';
 export default function MovieCard({
   movie,
   bookmarked,
+  keyValue,
   onBookmark,
 }: {
   movie: ConfigMovie;
   bookmarked: ConfigMovie[];
+  keyValue: string;
   onBookmark: (id: string) => void;
 }) {
+  console.log(keyValue);
+
   return (
-    <div className="col-md-3" key={movie.id}>
+    <div className="col-md-3" key={keyValue}>
       <li className="movie-card">
-        <div className="image-wrapper">
+        <div className="image-wrapper" key={keyValue}>
           <img src={movie.image} alt={movie.title} />
           <Link to={movie.id}>
             <Search className="search-icon" />

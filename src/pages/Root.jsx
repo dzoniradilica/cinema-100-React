@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router';
 
-import logo from '/images/logo.png';
+import logo from '../assets/images/logo.png';
 
 export default function RootLayout() {
   return (
