@@ -1,15 +1,15 @@
-import { useState } from 'react';
+import { useState, memo } from 'react';
 
 import searchMovie from '../utils/searchMovie';
 
 import MovieCard from './MovieCard';
 import Pagination from './Pagination';
-// import BookmarkedMovie from './BookmarkedMovie';
+import BookmarkedMovie from './BookmarkedMovie';
 
 import { ConfigMovie } from '../configs/movie';
 import { PaginationConfig } from '../configs/pagination';
 
-export default function Movies({
+export default memo(function Movies({
   movies,
   movieName,
   location,
@@ -62,8 +62,8 @@ export default function Movies({
             searchedMovies.slice(start, end).map(movie => {
               return (
                 <MovieCard
+                  key={movie.id}
                   movie={movie}
-                  keyValue={movie.id}
                   onBookmark={onBookmark}
                   bookmarked={bookmarked}
                 />
@@ -77,12 +77,11 @@ export default function Movies({
           {!location &&
             bookmarkedMovies.slice(start, end).map(movie => {
               return (
-                <MovieCard
+                <BookmarkedMovie
+                  key={movie.imdbid}
                   movie={movie}
-                  key={movie.id}
-                  keyValue={movie.imdbid}
+                  bookmarked={bookmarkedMovies}
                   onBookmark={onBookmark}
-                  bookmarked={bookmarked}
                 />
               );
             })}
@@ -101,4 +100,4 @@ export default function Movies({
       />
     </section>
   );
-}
+});

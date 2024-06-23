@@ -1,7 +1,22 @@
-// import { useState } from 'react';
+import MovieCard from './MovieCard';
 
-export default function BookmarkedMovie() {
-  //   const [bookmarked, setBookmarked] = useState();
+import { ConfigMovie } from '../configs/movie';
 
-  return <div>op</div>;
+export default function BookmarkedMovie({
+  movie,
+  bookmarked,
+  onBookmark,
+}: {
+  movie: ConfigMovie;
+  bookmarked: ConfigMovie[];
+  onBookmark: (id: string) => void;
+}) {
+  return (
+    <MovieCard
+      movie={movie}
+      key={movie.id}
+      onBookmark={() => onBookmark(movie.id)}
+      bookmarked={bookmarked}
+    />
+  );
 }

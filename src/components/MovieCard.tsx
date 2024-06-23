@@ -5,7 +5,6 @@ import {
   Search,
   Bookmark,
   BookmarkCheck,
-  // BookmarkCheck,
 } from 'react-bootstrap-icons';
 
 import { ConfigMovie } from '../configs/movie';
@@ -13,20 +12,16 @@ import { ConfigMovie } from '../configs/movie';
 export default function MovieCard({
   movie,
   bookmarked,
-  keyValue,
   onBookmark,
 }: {
   movie: ConfigMovie;
   bookmarked: ConfigMovie[];
-  keyValue: string;
   onBookmark: (id: string) => void;
 }) {
-  console.log(keyValue);
-
   return (
-    <div className="col-md-3" key={keyValue}>
+    <div className="col-md-3">
       <li className="movie-card">
-        <div className="image-wrapper" key={keyValue}>
+        <div className="image-wrapper">
           <img src={movie.image} alt={movie.title} />
           <Link to={movie.id}>
             <Search className="search-icon" />
