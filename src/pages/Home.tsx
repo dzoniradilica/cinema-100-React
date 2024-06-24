@@ -39,6 +39,8 @@ export default function HomePage() {
     });
   }
 
+  console.log('home rerender');
+
   return (
     <div className="home-wrapper">
       <Searchbar
