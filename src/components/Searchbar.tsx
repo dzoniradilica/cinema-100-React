@@ -1,21 +1,13 @@
-import { ChangeEvent } from 'react';
+import { useContext } from 'react';
 
 import { AiOutlineHome, AiFillHome } from 'react-icons/ai';
 import { RiBookMarkedLine } from 'react-icons/ri';
 
-export default function Searchbar({
-  genres,
-  location,
-  onSearch,
-  onSelect,
-  onLocation,
-}: {
-  genres: string[];
-  location: boolean;
-  onSearch: (e: ChangeEvent<HTMLInputElement>) => void;
-  onSelect: (e: ChangeEvent<HTMLSelectElement>) => void;
-  onLocation: () => void;
-}) {
+import { MoviesContext } from '../store/moviesStore';
+
+export default function Searchbar({ genres }: { genres: string[] }) {
+  const { location, onSearch, onLocation, onGenre } = useContext(MoviesContext);
+
   return (
     <div className="searchbar">
       <input
@@ -26,7 +18,7 @@ export default function Searchbar({
       />
 
       <div className="icons-wrapper">
-        <select onChange={e => onSelect(e)}>
+        <select onChange={e => onGenre(e)}>
           <option value="all">All</option>
           {genres.map(genre => (
             <option key={genre} value={genre}>

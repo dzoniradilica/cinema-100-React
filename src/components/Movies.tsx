@@ -1,28 +1,24 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
 import searchMovie from '../utils/searchMovie';
 
 import MovieCard from './MovieCard';
 import Pagination from './Pagination';
 
+import { MoviesContext } from '../store/moviesStore';
+
 import { ConfigMovie } from '../configs/movie';
 import { PaginationConfig } from '../configs/pagination';
 
-export default function Movies({
-  movies,
-  movieName,
-  location,
-  selectedGenre,
-  bookmarked,
-  onBookmark,
-}: {
-  movies: ConfigMovie[];
-  movieName: string;
-  location: boolean;
-  selectedGenre: string;
-  bookmarked: ConfigMovie[];
-  onBookmark: (id: string) => void;
-}) {
+export default function Movies({ movies }: { movies: ConfigMovie[] }) {
+  const {
+    movieName,
+    location,
+    genre: selectedGenre,
+    bookmarked,
+    onBookmark,
+  } = useContext(MoviesContext);
+
   const [pagination, setPagination] = useState<PaginationConfig>({
     currentPage: 1,
     moviesPerPage: 12,
@@ -38,7 +34,7 @@ export default function Movies({
     pagination
   );
   const bookmarkedMovies = searchMovie(
-    bookmarked,
+    bookmarked!,
     movieName,
     selectedGenre,
     pagination
@@ -64,7 +60,7 @@ export default function Movies({
                   key={movie.id}
                   movie={movie}
                   onBookmark={onBookmark}
-                  bookmarked={bookmarked}
+                  bookmarked={bookmarked!}
                 />
               );
             })}
