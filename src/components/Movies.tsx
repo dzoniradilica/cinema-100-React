@@ -2,13 +2,14 @@ import { useState, useContext } from 'react';
 
 import searchMovie from '../utils/searchMovie';
 
-import MovieCard from './MovieCard';
+// import MovieCard from './MovieCard';
 import Pagination from './Pagination';
 
 import { MoviesContext } from '../store/moviesStore';
 
 import { ConfigMovie } from '../configs/movie';
 import { PaginationConfig } from '../configs/pagination';
+import ShownMovies from './ShownMovies';
 
 export default function Movies({ movies }: { movies: ConfigMovie[] }) {
   const {
@@ -16,7 +17,7 @@ export default function Movies({ movies }: { movies: ConfigMovie[] }) {
     location,
     genre: selectedGenre,
     bookmarked,
-    onBookmark,
+    // onBookmark,
   } = useContext(MoviesContext);
 
   const [pagination, setPagination] = useState<PaginationConfig>({
@@ -53,33 +54,17 @@ export default function Movies({ movies }: { movies: ConfigMovie[] }) {
     <section className="movies">
       <ul className="container">
         <div className="row">
-          {location &&
-            searchedMovies.slice(start, end).map(movie => {
-              return (
-                <MovieCard
-                  key={movie.id}
-                  movie={movie}
-                  onBookmark={onBookmark}
-                  bookmarked={bookmarked!}
-                />
-              );
-            })}
+          {location && (
+            <ShownMovies movies={searchedMovies} start={start} end={end} />
+          )}
 
-          {searchedMovies.length === 0 && location && (
+          {searchedMovies.length === 0 && (
             <p className="noMovie">No movies found!</p>
           )}
 
-          {!location &&
-            bookmarkedMovies.slice(start, end).map(movie => {
-              return (
-                <MovieCard
-                  key={movie.imdbid}
-                  movie={movie}
-                  bookmarked={bookmarkedMovies}
-                  onBookmark={onBookmark}
-                />
-              );
-            })}
+          {!location && (
+            <ShownMovies movies={bookmarkedMovies} start={start} end={end} />
+          )}
 
           {bookmarkedMovies.length === 0 && (
             <p className="noMovie">No bookmarked movies!</p>
@@ -88,7 +73,7 @@ export default function Movies({ movies }: { movies: ConfigMovie[] }) {
       </ul>
 
       <Pagination
-        length={searchedMovies.length}
+        length={location ? searchedMovies.length : bookmarkedMovies.length}
         currentPage={pagination.currentPage}
         moviesPerPage={pagination.moviesPerPage}
         onPagination={handlePagination}

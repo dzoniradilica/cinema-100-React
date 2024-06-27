@@ -11,8 +11,6 @@ export default function HomePage() {
   const movies = useLoaderData() as ConfigMovie[];
   const genres = [...new Set(movies.flatMap(movie => movie.genre))];
 
-  console.log('radooo');
-
   return (
     <MoviesContextProvider movies={movies}>
       <div className="home-wrapper">
